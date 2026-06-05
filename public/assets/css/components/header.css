@@ -1,0 +1,507 @@
+/* ==========================================
+   1. RESET & FONTS (Dùng cho toàn trang)
+   ========================================== */
+@font-face {
+  font-family: 'PoppinsVH';
+  src: url('../../../assets/font/FzPoppins/FZ-Poppins-Regular.ttf') format('truetype');
+  font-weight: 400;
+}
+@font-face {
+  font-family: 'PoppinsVH';
+  src: url('../../../assets/font/FzPoppins/FZ-Poppins-Bold.ttf') format('truetype');
+  font-weight: 700;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'PoppinsVH', Arial, sans-serif;
+}
+
+body {
+  background-color: #f4f4f4;
+  color: #333;
+  line-height: 1.6;
+}
+
+a {
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+ul {
+  list-style: none;
+}
+
+/* ==========================================
+   2. HEADER CSS
+   ========================================== */
+header {
+  background-color: #a4161a;
+  color: #fff;
+}
+
+.top-bar {
+  background-color: #0d47a1;
+  padding: 5px 15%;
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+}
+
+.main-header {
+  padding: 15px 13%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: nowrap !important; /* Chống rớt dòng */
+}
+
+.logo img {
+  width: 250px;
+  object-fit: contain;
+}
+
+/* Search Bar */
+.search-bar {
+  display: flex;
+  background: #fff;
+  border-radius: 50px;
+  padding: 5px 15px;
+  flex: 1;
+  max-width: 500px;
+  margin: 0 20px;
+}
+
+.search-input {
+  border: none;
+  outline: none;
+  flex: 1;
+  padding: 8px;
+  font-size: 14px;
+}
+
+.search-bar button {
+  background: #b43f3f;
+  border: none;
+  color: #fff;
+  padding: 5px 20px;
+  border-radius: 50px;
+  cursor: pointer;
+  margin-right: 3px;
+}
+.search-bar  .normal-btn {
+  position: relative;
+  top: 0px !important;
+  padding: 0px 20px !important;
+}
+/* User Options */
+.user-options {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+  white-space: nowrap;
+}
+
+.user-options a {
+  color: #fff;
+  font-weight: 300;
+  font-size: 15px;
+}
+
+/* Nav Bar Menu */
+.nav-bar {
+  background-color: #a4161a;
+  padding: 0;
+}
+
+.header-menu-ul {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  padding: 30px 0;
+}
+
+.header-menu-ul li a {
+  color: #fff;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+/* --- DROPDOWN (Chủ đề & User) --- */
+.dropdown-chu-de, .user-dropdown-wrapper { position: relative; }
+
+.dropdown-menu, .user-dropdown-menu {
+  position: absolute;
+  top: 100%;
+  background: #fff;
+  display: none;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+  padding: 10px 0;
+  border-radius: 4px;
+  z-index: 9999;
+}
+
+.dropdown-chu-de:hover .dropdown-menu,
+.user-dropdown-wrapper:hover .user-dropdown-menu {
+  display: block;
+}
+
+.dropdown-menu li a, .user-dropdown-menu li a {
+  color: #333 !important;
+  display: block;
+  padding: 10px 20px;
+  white-space: nowrap;
+}
+
+.dropdown-menu li a:hover, .user-dropdown-menu li a:hover {
+  background-color: #f8f9fa;
+  color: #a4161a !important;
+}
+
+/* ==========================================
+   3. FOOTER CSS
+   ========================================== */
+footer {
+  background-color: #fff;
+  margin-top: 50px;
+}
+
+.footer-top {
+  background-color: #a4161a;
+  color: #fff;
+  padding: 10px 15%;
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+}
+
+.footer-body {
+  padding: 40px 15%;
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr 1fr;
+  gap: 30px;
+  border-bottom: 2px solid #a4161a;
+}
+
+.footer-body h4 {
+  color: #a4161a;
+  margin-bottom: 20px;
+  font-size: 18px;
+}
+
+.footer-body p, .footer-body li {
+  color: #666;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.footer-body a { color: #666; }
+.footer-body a:hover { color: #a4161a; }
+
+.subscribe-box input {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  width: 70%;
+}
+
+.subscribe-box button {
+  padding: 10px 15px;
+  background: #a4161a;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.footer-bottom {
+  padding: 20px 15%;
+  text-align: center;
+  color: #999;
+  font-size: 13px;
+}
+
+/* ==========================================
+   4. TÌM KIẾM NÂNG CAO (Popup)
+   ========================================== */
+.advanced-search-overlay {
+  display: none;
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background: rgba(0,0,0,0.6);
+  z-index: 10000;
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(5px);
+}
+
+.advanced-search-overlay.active { display: flex; }
+
+.advanced-search-modal {
+  background: #fff;
+  width: 90%;
+  max-width: 500px;
+  border-radius: 15px;
+  overflow: hidden;
+}
+
+.advanced-search-header {
+  background: #a4161a;
+  color: #fff;
+  padding: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+/* ==========================================
+   BREADCRUMB (Thanh điều hướng)
+   ========================================== */
+.breadcrumb-wrapper {
+    background-color: #fff;
+    border-top: 1px solid #eaeaea;
+    border-bottom: 1px solid #eaeaea;
+    margin-bottom: 30px;
+    padding: 15px 0;
+}
+
+.breadcrumb-wrapper .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+}
+
+.breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.breadcrumb a {
+    color: #a4161a;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.breadcrumb a:hover { color: #d00000; }
+.breadcrumb .separator { color: #ccc; }
+.breadcrumb .active { color: #333; font-weight: 600; }
+
+/* ==========================================
+   SIDEBAR FILTER (Cột lọc bên trái)
+   ========================================== */
+.sidebar-filter {
+    background: #fff;
+    border-radius: 12px;
+    padding: 25px 20px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.03); /* Bóng đổ rất mờ giống ảnh */
+    border: 1px solid #f0f0f0;
+}
+
+.filter-group {
+    margin-bottom: 30px;
+}
+
+.filter-group:last-child {
+    margin-bottom: 0;
+}
+
+/* Tiêu đề danh mục có gạch đít đỏ */
+.filter-title {
+    color: #a4161a;
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border-bottom: 2px solid #a4161a;
+    padding-bottom: 10px;
+}
+
+.filter-list li {
+    margin-bottom: 12px;
+}
+
+.filter-label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    font-size: 14px;
+    color: #444;
+    font-weight: 500;
+    transition: 0.2s;
+}
+
+.filter-label:hover {
+    color: #a4161a;
+}
+
+/* Custom cái Radio Button cho hiện đại */
+.filter-label input[type="radio"] {
+    margin-right: 12px;
+    width: 16px;
+    height: 16px;
+    accent-color: #a4161a; /* Đổi màu nút tick thành màu đỏ của LEGO */
+    cursor: pointer;
+}
+
+.filter-label .count {
+    color: #888;
+    margin-left: 6px;
+    font-size: 13px;
+    font-weight: 400;
+}
+/* Sidebar Group */
+.sidebar-filter {
+    background: #fff;
+    padding: 20px;
+    border-radius: 12px;
+    border: 1px solid #eee;
+}
+
+.filter-group {
+    margin-bottom: 25px;
+    border-bottom: 1px solid #f5f5f5;
+    padding-bottom: 15px;
+}
+
+.filter-group:last-of-type {
+    border-bottom: none;
+}
+
+.filter-title {
+    color: #a4161a;
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #a4161a;
+    display: inline-block;
+    padding-bottom: 5px;
+}
+
+.filter-list {
+    list-style: none;
+    padding: 0;
+}
+
+.filter-label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+    font-size: 14px;
+    cursor: pointer;
+    color: #444;
+}
+
+.filter-label input[type="radio"] {
+    accent-color: #a4161a;
+    width: 16px;
+    height: 16px;
+}
+
+.filter-subtitle {
+    font-size: 13px;
+    font-weight: 600;
+    margin: 15px 0 8px;
+    color: #666;
+}
+
+/* Ô nhập giá tay */
+.price-input-group {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.price-input-group input {
+    width: 80px;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 13px;
+    outline: none;
+}
+
+.price-input-group input:focus {
+    border-color: #a4161a;
+}
+
+/* Nút bấm ở cuối */
+.filter-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.btn-apply-filter {
+    background-color: #a4161a;
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 8px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.3s;
+    width: 100%;
+}
+
+.btn-apply-filter:hover {
+    background-color: #801215;
+}
+
+.btn-clear-filter {
+    display: block;
+    text-align: center;
+    background-color: white;
+    color: #a4161a;
+    border: 1px solid #a4161a;
+    padding: 10px;
+    border-radius: 8px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.btn-clear-filter:hover {
+    background-color: #fff5f5;
+}
+/* CSS CHO LIVE SEARCH */
+    .search-suggestions {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: calc(100% - 50px); /* Trừ đi nút nâng cao */
+        background: #fff;
+        border: 1px solid #eee;
+        border-radius: 8px;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        z-index: 9999;
+        max-height: 350px;
+        overflow-y: auto;
+        margin-top: 5px;
+    }
+    .suggest-item {
+        display: flex;
+        align-items: center;
+        padding: 10px 15px;
+        border-bottom: 1px solid #f5f5f5;
+        text-decoration: none;
+        color: #333;
+        transition: 0.2s;
+    }
+    .suggest-item:last-child { border-bottom: none; }
+    .suggest-item:hover { background-color: #f8f9fa; }
+    .suggest-img { width: 50px; height: 50px; object-fit: contain; border-radius: 4px; border: 1px solid #eee; margin-right: 15px; }
+    .suggest-info { display: flex; flex-direction: column; }
+    .suggest-name { font-size: 14px; font-weight: 600; color: #333; margin-bottom: 5px; }
+    .suggest-item:hover .suggest-name { color: #a4161a; }
+    .suggest-price { font-size: 13px; font-weight: 700; color: #a4161a; }
+
+    
