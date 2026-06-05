@@ -25,58 +25,52 @@ lego_shop_php/
 ├── .htaccess               # Rewrite tất cả yêu cầu về `index.php`
 ├── index.php               # Entry point (gọi `session_start()` và khởi tạo `App`)
 └── lego_shop.sql           # SQL schema để import vào MySQL
-Yêu cầu hệ thống (Prerequisites)
-XAMPP (PHP 7.4 hoặc 8.x)
+```
 
-Trình duyệt: Chrome, Edge hoặc Firefox
+## Yêu cầu hệ thống (Prerequisites)
 
-Công cụ quản lý DB: phpMyAdmin (hoặc MySQL client)
+- XAMPP (PHP 7.4 hoặc 8.x)
+- Trình duyệt: Chrome, Edge hoặc Firefox
+- Công cụ quản lý DB: phpMyAdmin (hoặc MySQL client)
 
-Hướng dẫn cài đặt và chạy (Setup Instructions)
-Bước 1: Sao chép dự án
-Tải mã nguồn và giải nén vào thư mục htdocs của XAMPP (ví dụ C:\xampp\htdocs).
+## Hướng dẫn cài đặt và chạy (Setup Instructions)
 
-Đặt tên thư mục là lego_shop_php.
+### Bước 1: Sao chép dự án
+- Tải mã nguồn và giải nén vào thư mục `htdocs` của XAMPP (ví dụ `C:\xampp\htdocs`).
+- Đặt tên thư mục là `lego_shop_php`.
 
-Bước 2: Import database
-Khởi động Apache và MySQL trên XAMPP.
+### Bước 2: Import database
+- Khởi động Apache và MySQL trên XAMPP.
+- Mở `http://localhost/phpmyadmin`.
+- Tạo database mới tên `lego_shop` (Khuyến nghị chọn Collation là `utf8mb4_unicode_ci`).
+- Vào tab Import và chọn file `lego_shop.sql` ở thư mục gốc dự án để nạp dữ liệu.
 
-Mở http://localhost/phpmyadmin.
+### Bước 3: Cấu hình kết nối database
+- Mở file `app/core/Database.php` và kiểm tra các biến kết nối:
 
-Tạo database mới tên lego_shop (Khuyến nghị chọn Collation là utf8mb4_unicode_ci).
-
-Vào tab Import và chọn file lego_shop.sql ở thư mục gốc dự án để nạp dữ liệu.
-
-Bước 3: Cấu hình kết nối database
-Mở file app/core/Database.php và kiểm tra các biến kết nối:
-
-PHP
+```php
 private $db_name = "lego_shop"; // Tên database
 private $username = "root";     // Tên user DB
 private $password = "";         // Mật khẩu DB (nếu có)
+```
+
 Chỉnh sửa nếu bạn dùng tên database hoặc thông tin kết nối khác trên máy tính của mình.
 
-Bước 4: Chạy ứng dụng và Tài khoản Test
-Mở trình duyệt và truy cập: http://localhost/lego_shop_php/
+### Bước 4: Chạy ứng dụng và Tài khoản Test
+- Mở trình duyệt và truy cập: `http://localhost/lego_shop_php/`
+- **Tài khoản Admin (để truy cập trang quản trị):** - Email: `admin@legoworld.com` (hoặc `admin`)
+  - Mật khẩu: `123456`
+- **Tài khoản Khách hàng (để test mua hàng):**
+  - Email: `test@gmail.com`
+  - Mật khẩu: `123456`
 
-Tài khoản Admin (để truy cập trang quản trị): - Email: admin@legoworld.com (hoặc admin)
+## Các tính năng nổi bật & Ứng dụng AI
 
-Mật khẩu: 123456
+- **Kiến trúc MVC:** Tách biệt rõ ràng logic xử lý (Model/Controller) và giao diện (View), code dễ đọc và dễ bảo trì.
+- **Quản lý quy trình toàn diện:** Hỗ trợ đầy đủ luồng mua sắm của khách (Giỏ hàng, Checkout) và luồng quản trị kho hàng của Admin (Nhập xuất tồn, quản lý đơn hàng).
+- **Hỗ trợ từ AI (Google Gemini):** Dự án có sự can thiệp của AI trong việc sinh mã cơ bản (boilerplate code), viết các câu truy vấn MySQL phức tạp (ví dụ: thống kê báo cáo) và hỗ trợ tìm, sửa lỗi (debug) nhanh chóng trong quá trình phát triển.
 
-Tài khoản Khách hàng (để test mua hàng):
+## Lưu ý quan trọng
 
-Email: test@gmail.com
-
-Mật khẩu: 123456
-
-Các tính năng nổi bật & Ứng dụng AI
-Kiến trúc MVC: Tách biệt rõ ràng logic xử lý (Model/Controller) và giao diện (View), code dễ đọc và dễ bảo trì.
-
-Quản lý quy trình toàn diện: Hỗ trợ đầy đủ luồng mua sắm của khách (Giỏ hàng, Checkout) và luồng quản trị kho hàng của Admin (Nhập xuất tồn, quản lý đơn hàng).
-
-Hỗ trợ từ AI (Google Gemini): Dự án có sự can thiệp của AI trong việc sinh mã cơ bản (boilerplate code), viết các câu truy vấn MySQL phức tạp (ví dụ: thống kê báo cáo) và hỗ trợ tìm, sửa lỗi (debug) nhanh chóng trong quá trình phát triển.
-
-Lưu ý quan trọng
-Nếu gặp lỗi 404 khi chuyển trang, kiểm tra mod_rewrite trong Apache đã bật chưa và cấu hình .htaccess có hoạt động không.
-
-Đảm bảo hàm session_start(); luôn được gọi ở dòng đầu tiên của index.php để giỏ hàng và chức năng đăng nhập hoạt động đúng.
+- Nếu gặp lỗi 404 khi chuyển trang, kiểm tra `mod_rewrite` trong Apache đã bật chưa và cấu hình `.htaccess` có hoạt động không.
+- Đảm bảo hàm `session_start();` luôn được gọi ở dòng đầu tiên của `index.php` để giỏ hàng và chức năng đăng nhập hoạt động đúng.
